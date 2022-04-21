@@ -2,6 +2,7 @@ package com.example.EuroSpace;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -55,4 +56,13 @@ public class studentController {
         // note: when using @Pathvariable, the name in your pathvariable must be the same with the name in your
         //@GetMapping annotation
     }
+    // build Rest API to handle query parameters
+    // http://localhost:8080/student?firstname=Rameesh&lastname=farade
+    // the RequestParam name must match with query in the url
+    @GetMapping("/student")
+    public Student getStudentParam(@RequestParam(name="firstname") String firstname,
+                                   @RequestParam(name="lastname") String lastname){
+        return new Student(firstname,lastname);
+    }
+
 }
